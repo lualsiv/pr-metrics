@@ -1,16 +1,31 @@
 # PR Metrics
 
-To start the Phoenix server:
+This project aims to get metrics from Busbud Pull-Requests (e.g. evolution of PR open-time).
 
-* Install dependencies with `mix deps.get`
-* Install Node.js dependencies with `cd assets && npm install`
-* Start Phoenix endpoint with `mix phx.server`
+## Get started
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+You need to install [Docker](https://docs.docker.com/install/) if you don't have it. And that's pretty much it 👐
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+> The first time you run Docker, you need an internet connection because it'll certainly download images from public repositories.
+
+Commands are listed in a Makefile so you don't have to memorize Docker commands params.
+
+Available commands are:
+
+* `make run` to start a development server, with following options:
+  * `make run PORT=4010` to use port `4010` instead of default one
+
+## Contribute
+
+This project uses following technologies:
+
+* [Docker](https://docs.docker.com/) to make development and deployment easy
+* [Phoenix](http://www.phoenixframework.org/), which is a web framework based on [Elixir](https://elixir-lang.org/)
+  * Phoenix has [a couple of dependencies](https://hexdocs.pm/phoenix/installation.html#content). Hopefully, you don't have to install them if you use Docker as suggested 😉
 
 ## Learn more
+
+### Phoenix
 
 * Official website: http://www.phoenixframework.org/
 * Guides: http://phoenixframework.org/docs/overview
