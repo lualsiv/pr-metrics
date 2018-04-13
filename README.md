@@ -8,7 +8,7 @@ You need to install [Docker](https://docs.docker.com/install/) if you don't have
 
 > The first time you run Docker, you need an internet connection because it'll certainly download images from public repositories.
 
-Commands are listed in a Makefile so you don't have to memorize Docker commands params.
+Commands are listed in a Makefile, so you don't have to memorize Docker commands params.
 
 Available commands are:
 
@@ -23,7 +23,7 @@ This project uses following technologies:
 
 * [Docker](https://docs.docker.com/) to make development and deployment easy
 * [Phoenix](http://www.phoenixframework.org/), which is a web framework based on [Elixir](https://elixir-lang.org/)
-  * Phoenix has [a couple of dependencies](https://hexdocs.pm/phoenix/installation.html#content). Hopefully, you don't have to install them if you use Docker as suggested 😉
+  * Phoenix has [a couple of dependencies](https://hexdocs.pm/phoenix/installation.html#content). But you don't have to install them if you use Docker 😉
 
 ## Learn more
 
