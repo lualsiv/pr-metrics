@@ -13,7 +13,9 @@ Commands are listed in a Makefile so you don't have to memorize Docker commands 
 Available commands are:
 
 * `make run` to start a development server, with following options:
-  * `make run PORT=4010` to use port `4010` instead of default one
+  * `make run PORT=4010` to use port `4010` instead of the default one
+* `make test` to run project tests
+  * `make test PORT=4011` to use port `4011` instead of the default one
 
 ## Contribute
 
