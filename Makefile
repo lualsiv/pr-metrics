@@ -6,6 +6,7 @@ DEFAULT_TEST_PORT = 4001
 DOCKER_IMAGE = bitwalker/alpine-elixir-phoenix:1.6.4
 DOCKER_WORKING_DIR = /app
 
+INSTALL_DEPS_CMD = 'mix deps.get; cd assets/; npm install'
 RUN_APP_CMD = 'mix phx.server'
 RUN_TESTS_CMD = 'mix test'
 
@@ -24,6 +25,11 @@ DOCKER_RUN_CMD = docker run \
 	${DOCKER_ALLOW_STDIN} \
 	${DOCKER_MOUNT_LOCAL_FILES} \
 	-w ${DOCKER_WORKING_DIR} \
+
+install:
+	${DOCKER_RUN_CMD} \
+		${DOCKER_IMAGE} \
+		sh -c ${INSTALL_DEPS_CMD} \
 
 run:
 	$(eval PORT ?= ${DEFAULT_DEV_PORT})

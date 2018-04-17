@@ -12,6 +12,7 @@ Commands are listed in a Makefile, so you don't have to memorize Docker commands
 
 Available commands are:
 
+* `make install` to install dependencies
 * `make run` to start a development server, with following options:
   * `make run PORT=4010` to use port `4010` instead of the default one
 * `make test` to run project tests
