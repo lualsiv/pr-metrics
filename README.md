@@ -16,6 +16,8 @@ Then, you can run it with Docker… or use following commands:
   * `PORT` to use a custom port (e.g. `make start PORT=4010`)
 * `make test` to run project tests
   * `PORT` to use a custom port (e.g. `make test PORT=4011`)
+* `make test_watch` to run project tests in watch mode
+  * `PORT` to use a custom port (e.g. `make test_watch PORT=4011`)
 
 If you want to run a custom command that is not in previous list, you can use `make run COMMAND='<your command>'` (e.g. `make run COMMAND='elixir --version'` will run `elixir --version` in the Docker environment).
 
