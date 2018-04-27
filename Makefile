@@ -3,12 +3,12 @@
 DEFAULT_DEV_PORT = 4000
 DEFAULT_TEST_PORT = 4001
 
-DOCKER_IMAGE = bitwalker/alpine-elixir-phoenix:1.6.4
+DOCKER_IMAGE = bitwalker/alpine-elixir:1.6.4
 DOCKER_WORKING_DIR = /app
 
-INSTALL_DEPS_CMD = 'mix deps.get; cd assets/; npm install'
-RUN_APP_CMD = 'mix phx.server'
-RUN_TESTS_CMD = 'mix test'
+INSTALL_DEPS_CMD = 'mix deps.get'
+START_CMD = 'iex -S mix'
+TEST_CMD = 'mix test'
 
 # DOCKER PARAMS
 # Clean everything when we quit
@@ -31,12 +31,12 @@ install:
 		${DOCKER_IMAGE} \
 		sh -c ${INSTALL_DEPS_CMD} \
 
-run:
+start:
 	$(eval PORT ?= ${DEFAULT_DEV_PORT})
 	${DOCKER_RUN_CMD} \
 		-p ${PORT}:${DEFAULT_DEV_PORT} \
 		${DOCKER_IMAGE} \
-		sh -c ${RUN_APP_CMD} \
+		sh -c ${START_CMD} \
 
 .PHONY: test
 test:
@@ -44,4 +44,9 @@ test:
 	${DOCKER_RUN_CMD} \
 		-p ${PORT}:${DEFAULT_TEST_PORT} \
 		${DOCKER_IMAGE} \
-		sh -c ${RUN_TESTS_CMD} \
+		sh -c ${TEST_CMD} \
+
+run:
+	${DOCKER_RUN_CMD} \
+		${DOCKER_IMAGE} \
+		sh -c '${COMMAND}' \

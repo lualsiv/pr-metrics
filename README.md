@@ -13,25 +13,16 @@ Commands are listed in a Makefile, so you don't have to memorize Docker commands
 Available commands are:
 
 * `make install` to install dependencies
-* `make run` to start a development server, with following options:
-  * `make run PORT=4010` to use port `4010` instead of the default one
+* `make start` to start a development server, with following options:
+  * `PORT` to use a custom port (e.g. `make start PORT=4010`)
 * `make test` to run project tests
-  * `make test PORT=4011` to use port `4011` instead of the default one
+  * `PORT` to use a custom port (e.g. `make test PORT=4011`)
+
+If you want to run a custom command that is not in previous list, you can use `make run COMMAND='<your command>'` (e.g. `make run COMMAND='elixir --version'` will run `elixir --version` in the Docker environment).
 
 ## Contribute
 
 This project uses following technologies:
 
 * [Docker](https://docs.docker.com/) to make development and deployment easy
-* [Phoenix](http://www.phoenixframework.org/), which is a web framework based on [Elixir](https://elixir-lang.org/)
-  * Phoenix has [a couple of dependencies](https://hexdocs.pm/phoenix/installation.html#content). But you don't have to install them if you use Docker 😉
-
-## Learn more
-
-### Phoenix
-
-* Official website: http://www.phoenixframework.org/
-* Guides: http://phoenixframework.org/docs/overview
-* Docs: https://hexdocs.pm/phoenix
-* Mailing list: http://groups.google.com/group/phoenix-talk
-* Source: https://github.com/phoenixframework/phoenix
+* [Elixir](https://elixir-lang.org/) which is a dynamic, functional language designed for building scalable and maintainable applications.
