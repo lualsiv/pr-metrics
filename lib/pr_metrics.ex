@@ -1,18 +1,21 @@
 defmodule PrMetrics do
   @moduledoc """
-  Documentation for PrMetrics.
+  PR Metrics application.
   """
+  require Logger
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> PrMetrics.hello
-      :world
-
+  Entry point of the application. Not doing much (yet).
   """
-  def hello do
-    :world
+  def main do
+    # Instantiate the "I need to go out" adapters
+
+    # Instantiate the hexagon
+    # open_time_calculator = OpenTimeCalculator.create
+
+    # Instantiate the "I need to enter" adapters
+
+    # App logic, using left-side adapters
+    Logger.info "Let's write some stuff here:\n"
   end
 end
