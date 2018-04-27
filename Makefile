@@ -1,12 +1,10 @@
 #!/usr/bin/make -f
 
-DEFAULT_DEV_PORT = 4000
-DEFAULT_TEST_PORT = 4001
+DEFAULT_PORT = 4000
 
-DOCKER_IMAGE = bitwalker/alpine-elixir:1.6.4
+DOCKER_IMAGE = pr-metrics
 DOCKER_WORKING_DIR = /app
 
-INSTALL_DEPS_CMD = 'mix deps.get'
 START_CMD = 'iex -S mix'
 TEST_CMD = 'mix test'
 
@@ -26,23 +24,21 @@ DOCKER_RUN_CMD = docker run \
 	${DOCKER_MOUNT_LOCAL_FILES} \
 	-w ${DOCKER_WORKING_DIR} \
 
-install:
-	${DOCKER_RUN_CMD} \
-		${DOCKER_IMAGE} \
-		sh -c ${INSTALL_DEPS_CMD} \
+build:
+	docker build -t ${DOCKER_IMAGE} .
 
 start:
-	$(eval PORT ?= ${DEFAULT_DEV_PORT})
+	$(eval PORT ?= ${DEFAULT_PORT})
 	${DOCKER_RUN_CMD} \
-		-p ${PORT}:${DEFAULT_DEV_PORT} \
+		-p ${PORT}:${DEFAULT_PORT} \
 		${DOCKER_IMAGE} \
 		sh -c ${START_CMD} \
 
 .PHONY: test
 test:
-	$(eval PORT ?= ${DEFAULT_TEST_PORT})
+	$(eval PORT ?= ${DEFAULT_PORT})
 	${DOCKER_RUN_CMD} \
-		-p ${PORT}:${DEFAULT_TEST_PORT} \
+		-p ${PORT}:${DEFAULT_PORT} \
 		${DOCKER_IMAGE} \
 		sh -c ${TEST_CMD} \
 

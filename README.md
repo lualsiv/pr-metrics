@@ -8,11 +8,10 @@ You need to install [Docker](https://docs.docker.com/install/) if you don't have
 
 > The first time you run Docker, you need an internet connection because it'll certainly download images from public repositories.
 
-Commands are listed in a Makefile, so you don't have to memorize Docker commands params.
+Start by building an image with `make build`.
 
-Available commands are:
+Then, you can run it with Docker… or use following commands:
 
-* `make install` to install dependencies
 * `make start` to start a development server, with following options:
   * `PORT` to use a custom port (e.g. `make start PORT=4010`)
 * `make test` to run project tests
