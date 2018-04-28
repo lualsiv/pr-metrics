@@ -11,7 +11,6 @@ defmodule PrMetrics do
     # Instantiate the "I need to go out" adapters
 
     # Instantiate the hexagon
-    # open_time_calculator = OpenTimeCalculator.create
 
     # Instantiate the "I need to enter" adapters
 
