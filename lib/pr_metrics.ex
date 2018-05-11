@@ -15,6 +15,6 @@ defmodule PrMetrics do
     # Instantiate the "I need to enter" adapters
 
     # App logic, using left-side adapters
-    Logger.info "Let's write some stuff here:\n"
+    Logger.info("Let's write some stuff here:\n")
   end
 end

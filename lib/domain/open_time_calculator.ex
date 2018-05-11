@@ -7,14 +7,15 @@ defmodule OpenTimeCalculator do
   Returns the average number of days given PRs have been opened until given date.
   """
   def for_prs(date, prs) do
-    days_opened_prs = prs
+    days_opened_prs =
+      prs
       |> Enum.map(fn pr -> pr.created_at end)
       |> Enum.flat_map(fn created_at ->
-          case days_opened(date, created_at) do
-            {:ok, days_opened} -> [days_opened]
-            {:error, _days_opened} -> []
-          end
-        end)
+        case days_opened(date, created_at) do
+          {:ok, days_opened} -> [days_opened]
+          {:error, _days_opened} -> []
+        end
+      end)
 
     Enum.sum(days_opened_prs) / Enum.count(days_opened_prs)
   end
@@ -40,8 +41,10 @@ defmodule OpenTimeCalculator do
     case diff_in_days(today, created_date) do
       {:ok, diff_in_days} when diff_in_days >= 0 ->
         {:ok, diff_in_days}
+
       {:ok, diff_in_days} ->
         {:error, :created_date_in_the_future}
+
       err ->
         err
     end
@@ -49,13 +52,12 @@ defmodule OpenTimeCalculator do
 
   defp diff_in_days(date_1, date_2) do
     with {:ok, date_1_iso8601, _} <- DateTime.from_iso8601(date_1),
-         {:ok, date_2_iso8601, _} <- DateTime.from_iso8601(date_2)
-      do
-        diff_in_seconds = DateTime.diff(date_1_iso8601, date_2_iso8601, :second)
-        seconds_per_day = 1 * 60 * 60 * 24
-        diff_in_days = trunc(diff_in_seconds / seconds_per_day)
+         {:ok, date_2_iso8601, _} <- DateTime.from_iso8601(date_2) do
+      diff_in_seconds = DateTime.diff(date_1_iso8601, date_2_iso8601, :second)
+      seconds_per_day = 1 * 60 * 60 * 24
+      diff_in_days = trunc(diff_in_seconds / seconds_per_day)
 
-        {:ok, diff_in_days}
-      end
+      {:ok, diff_in_days}
+    end
   end
 end

@@ -29,9 +29,9 @@ defmodule OpenTimeCalculatorTest do
 
   test "returns average number of days PRs have been opened until given date" do
     prs = [
-      %{ created_at: @two_days_before },
-      %{ created_at: @three_days_before },
-      %{ created_at: @four_days_before }
+      %{created_at: @two_days_before},
+      %{created_at: @three_days_before},
+      %{created_at: @four_days_before}
     ]
 
     avg_open_time = OpenTimeCalculator.for_prs(@today, prs)
@@ -41,10 +41,10 @@ defmodule OpenTimeCalculatorTest do
 
   test "omits PRs with an invalid date when calculating open time" do
     prs = [
-      %{ created_at: @two_days_before },
-      %{ created_at: @three_days_before },
-      %{ created_at: @invalid_date },
-      %{ created_at: @four_days_before }
+      %{created_at: @two_days_before},
+      %{created_at: @three_days_before},
+      %{created_at: @invalid_date},
+      %{created_at: @four_days_before}
     ]
 
     avg_open_time = OpenTimeCalculator.for_prs(@today, prs)
