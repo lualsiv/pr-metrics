@@ -7,7 +7,11 @@ defmodule PrMetrics.MixProject do
       version: "0.1.0",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+
+      # Docs
+      name: "PR Metrics",
+      source_url: "https://github.com/busbud/pr_metrics"
     ]
   end
 
@@ -21,6 +25,7 @@ defmodule PrMetrics.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:ex_doc, "~> 0.16", only: :dev, runtime: false},
       {:mix_test_watch, "~> 0.5", only: :dev, runtime: false}
     ]
   end

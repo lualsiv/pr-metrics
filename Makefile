@@ -9,6 +9,7 @@ START_CMD = 'iex -S mix'
 TEST_CMD = 'mix test'
 TEST_WATCH_CMD = 'mix test.watch'
 FORMAT_CMD = 'mix format'
+DOCS_CMD = 'mix docs'
 
 # DOCKER PARAMS
 # Clean everything when we quit
@@ -55,6 +56,11 @@ format:
 	${DOCKER_RUN_CMD} \
 		${DOCKER_IMAGE} \
 		sh -c ${FORMAT_CMD} \
+
+docs:
+	${DOCKER_RUN_CMD} \
+		${DOCKER_IMAGE} \
+		sh -c ${DOCS_CMD} \
 
 run:
 	${DOCKER_RUN_CMD} \
