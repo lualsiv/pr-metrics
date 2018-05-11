@@ -8,6 +8,7 @@ DOCKER_WORKING_DIR = /app
 START_CMD = 'iex -S mix'
 TEST_CMD = 'mix test'
 TEST_WATCH_CMD = 'mix test.watch'
+FORMAT_CMD = 'mix format'
 
 # DOCKER PARAMS
 # Clean everything when we quit
@@ -49,6 +50,11 @@ test_watch:
 		-p ${PORT}:${DEFAULT_PORT} \
 		${DOCKER_IMAGE} \
 		sh -c ${TEST_WATCH_CMD} \
+
+format:
+	${DOCKER_RUN_CMD} \
+		${DOCKER_IMAGE} \
+		sh -c ${FORMAT_CMD} \
 
 run:
 	${DOCKER_RUN_CMD} \
