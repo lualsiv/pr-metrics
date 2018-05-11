@@ -59,4 +59,4 @@ format:
 run:
 	${DOCKER_RUN_CMD} \
 		${DOCKER_IMAGE} \
-		sh -c '${COMMAND}' \
+		sh -c '${CMD}' \
