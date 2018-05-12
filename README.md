@@ -20,6 +20,8 @@ Then, you can run it with Docker… or use following commands:
   * `PORT` to use a custom port (e.g. `make test_watch PORT=4011`)
 * `make format` to format your code _(at some point, this will be a pre-commit hook so you won't have to bother)_
 * `make docs` generates documentation of the application
+* `make lint` lints your code
+  * It may take some time the first time you run it because it generates the [Persistent Lookup Table (PLT)](https://hexdocs.pm/dialyxir/readme.html#with-explaining-stuff) to cache the output of the analysis.
 
 If you want to run a custom command that is not in previous list, you can use `make run CMD='<your command>'` (e.g. `make run CMD='elixir --version'` will run `elixir --version` in the Docker environment).
 

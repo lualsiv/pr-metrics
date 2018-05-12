@@ -3,9 +3,12 @@ defmodule OpenTimeCalculator do
   Calculate pull requests open-time.
   """
 
+  @type pr :: %{created_at: String.t()}
+
   @doc """
   Returns the average number of days given PRs have been opened until given date.
   """
+  @spec for_prs(date :: String.t(), prs :: [pr]) :: non_neg_integer
   def for_prs(date, prs) do
     days_opened_prs =
       prs
@@ -17,7 +20,8 @@ defmodule OpenTimeCalculator do
         end
       end)
 
-    Enum.sum(days_opened_prs) / Enum.count(days_opened_prs)
+    (Enum.sum(days_opened_prs) / Enum.count(days_opened_prs))
+    |> round
   end
 
   @doc """
@@ -37,6 +41,8 @@ defmodule OpenTimeCalculator do
       iex> OpenTimeCalculator.days_opened "2011-01-10T00:00:00Z", "2011-01-13T00:00:00Z"
       {:error, :created_date_in_the_future}
   """
+  @spec days_opened(today :: String.t(), created_date :: String.t()) ::
+          {:ok, non_neg_integer} | {:error, atom}
   def days_opened(today, created_date) do
     case diff_in_days(today, created_date) do
       {:ok, diff_in_days} when diff_in_days >= 0 ->
@@ -50,6 +56,7 @@ defmodule OpenTimeCalculator do
     end
   end
 
+  @spec diff_in_days(String.t(), String.t()) :: {:ok, integer} | {:error, atom}
   defp diff_in_days(date_1, date_2) do
     with {:ok, date_1_iso8601, _} <- DateTime.from_iso8601(date_1),
          {:ok, date_2_iso8601, _} <- DateTime.from_iso8601(date_2) do

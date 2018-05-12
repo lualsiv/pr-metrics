@@ -51,4 +51,16 @@ defmodule OpenTimeCalculatorTest do
 
     assert avg_open_time == 3
   end
+
+  test "rounds the average open time" do
+    prs = [
+      %{created_at: @two_days_before},
+      %{created_at: @two_days_before},
+      %{created_at: @three_days_before}
+    ]
+
+    avg_open_time = OpenTimeCalculator.for_prs(@today, prs)
+
+    assert avg_open_time == 2
+  end
 end
