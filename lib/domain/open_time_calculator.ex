@@ -16,7 +16,7 @@ defmodule OpenTimeCalculator do
       |> Enum.flat_map(fn created_at ->
         case days_opened(date, created_at) do
           {:ok, days_opened} -> [days_opened]
-          {:error, _days_opened} -> []
+          {:error, _} -> []
         end
       end)
 
@@ -48,7 +48,7 @@ defmodule OpenTimeCalculator do
       {:ok, diff_in_days} when diff_in_days >= 0 ->
         {:ok, diff_in_days}
 
-      {:ok, diff_in_days} ->
+      {:ok, _diff_in_days} ->
         {:error, :created_date_in_the_future}
 
       err ->
