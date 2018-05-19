@@ -26,9 +26,7 @@ defmodule Domain.OpenTime do
     end)
   end
 
-  @spec average(values :: [number]) :: [integer]
-  defp average(values) do
-    (Enum.sum(values) / Enum.count(values))
-    |> round
-  end
+  @spec average(values :: [non_neg_integer]) :: non_neg_integer
+  defp average([]), do: 0
+  defp average(values), do: round(Enum.sum(values) / Enum.count(values))
 end

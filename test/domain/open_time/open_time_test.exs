@@ -56,4 +56,13 @@ defmodule Domain.OpenTimeTest do
 
     assert avg_open_time == 2
   end
+
+  test "returns 0 if there are no PR" do
+    today = fn -> @today end
+    empty_prs = fn -> [] end
+
+    avg_open_time = Domain.OpenTime.calculate(today, empty_prs)
+
+    assert avg_open_time == 0
+  end
 end
