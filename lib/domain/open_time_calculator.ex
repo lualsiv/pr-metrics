@@ -6,21 +6,29 @@ defmodule OpenTimeCalculator do
   @type pr :: %{created_at: String.t()}
 
   @doc """
-  Returns the average number of days given PRs have been opened until given date.
+  Returns the average number of days PRs have been opened until today.
   """
-  @spec for_prs(date :: String.t(), prs :: [pr]) :: non_neg_integer
-  def for_prs(date, prs) do
-    days_opened_prs =
-      prs
-      |> Enum.map(fn pr -> pr.created_at end)
-      |> Enum.flat_map(fn created_at ->
-        case days_opened(date, created_at) do
-          {:ok, days_opened} -> [days_opened]
-          {:error, _} -> []
-        end
-      end)
+  @spec calculate(today :: (() -> String.t()), prs :: (() -> [pr])) :: non_neg_integer
+  def calculate(today, prs) do
+    prs_open_times_until(today.(), prs.())
+    |> average
+  end
 
-    (Enum.sum(days_opened_prs) / Enum.count(days_opened_prs))
+  @spec prs_open_times_until(today :: String.t(), prs :: [pr]) :: [non_neg_integer]
+  defp prs_open_times_until(today, prs) do
+    prs
+    |> Enum.map(fn pr -> pr.created_at end)
+    |> Enum.flat_map(fn created_at ->
+      case days_opened(today, created_at) do
+        {:ok, days_opened} -> [days_opened]
+        {:error, _} -> []
+      end
+    end)
+  end
+
+  @spec average(values :: [number]) :: [integer]
+  defp average(values) do
+    (Enum.sum(values) / Enum.count(values))
     |> round
   end
 
