@@ -10,7 +10,9 @@ You need to install [Docker](https://docs.docker.com/install/) if you don't have
 
 Start by building an image with `make build`.
 
-Then, you can run it with Docker… or use following commands:
+Then, install deps with `make install`.
+
+Finally, you can use following commands:
 
 * `make start` to start a development server, with following options:
   * `PORT` to use a custom port (e.g. `make start PORT=4010`)

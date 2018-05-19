@@ -5,6 +5,7 @@ DEFAULT_PORT = 4000
 DOCKER_IMAGE = pr-metrics
 DOCKER_WORKING_DIR = /app
 
+INSTALL_CMD = 'mix deps.get'
 START_CMD = 'iex -S mix'
 TEST_CMD = 'mix test'
 TEST_WATCH_CMD = 'mix test.watch'
@@ -30,6 +31,11 @@ DOCKER_RUN_CMD = docker run \
 
 build:
 	docker build -t ${DOCKER_IMAGE} .
+
+install:
+	${DOCKER_RUN_CMD} \
+		${DOCKER_IMAGE} \
+		sh -c ${INSTALL_CMD} \
 
 start:
 	$(eval PORT ?= ${DEFAULT_PORT})
