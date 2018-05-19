@@ -1,4 +1,4 @@
-defmodule OpenTimeCalculator do
+defmodule Domain.OpenTimeCalculator do
   @moduledoc """
   Calculate pull requests open-time.
   """
@@ -37,16 +37,16 @@ defmodule OpenTimeCalculator do
 
   ## Examples
 
-      iex> OpenTimeCalculator.days_opened "2011-01-13T00:00:00Z", "2011-01-10T00:00:00Z"
+      iex> Domain.OpenTimeCalculator.days_opened "2011-01-13T00:00:00Z", "2011-01-10T00:00:00Z"
       {:ok, 3}
 
-      iex> OpenTimeCalculator.days_opened "2011-02-01T00:00:00Z", "2011-01-01T00:00:00Z"
+      iex> Domain.OpenTimeCalculator.days_opened "2011-02-01T00:00:00Z", "2011-01-01T00:00:00Z"
       {:ok, 31}
 
-      iex> OpenTimeCalculator.days_opened "2011-01-01T00:00:00Z", "2010-06-01T00:00:00Z"
+      iex> Domain.OpenTimeCalculator.days_opened "2011-01-01T00:00:00Z", "2010-06-01T00:00:00Z"
       {:ok, 214}
 
-      iex> OpenTimeCalculator.days_opened "2011-01-10T00:00:00Z", "2011-01-13T00:00:00Z"
+      iex> Domain.OpenTimeCalculator.days_opened "2011-01-10T00:00:00Z", "2011-01-13T00:00:00Z"
       {:error, :created_date_in_the_future}
   """
   @spec days_opened(today :: String.t(), created_date :: String.t()) ::
