@@ -2,32 +2,55 @@
 
 This project aims to get metrics from Busbud Pull-Requests (e.g. evolution of PR open-time).
 
-## Get started
+## 👣 Get started
 
-You need to install [Docker](https://docs.docker.com/install/) if you don't have it. And that's pretty much it 👐
+First, you need to install [Docker](https://docs.docker.com/install/) if you don't have it.
 
-> The first time you run Docker, you need an internet connection because it'll certainly download images from public repositories.
+Then, [create a GitHub AccessToken](https://blog.github.com/2013-05-16-personal-api-tokens/) with the **repo** scope.
 
-Start by building an image with `make build`.
+> It needs to access your private repos to find Busbud ones.
 
-Then, install deps with `make install`.
+Once you've got your token, run `make bootstrap TOKEN=<YOUR TOKEN>`.
 
-Finally, you can use following commands:
+> This builds the Docker image, installs deps and generates `config/config.secret.exs` with your token (it is not versioned 😉).
 
-* `make start` to start a development server, with following options:
-  * `PORT` to use a custom port (e.g. `make start PORT=4010`)
-* `make test` to run project tests
-  * `PORT` to use a custom port (e.g. `make test PORT=4011`)
-* `make test_watch` to run project tests in watch mode
-  * `PORT` to use a custom port (e.g. `make test_watch PORT=4011`)
-* `make format` to format your code _(at some point, this will be a pre-commit hook so you won't have to bother)_
-* `make docs` generates documentation of the application
-* `make lint` lints your code
-  * It may take some time the first time you run it because it generates the [Persistent Lookup Table (PLT)](https://hexdocs.pm/dialyxir/readme.html#with-explaining-stuff) to cache the output of the analysis.
+And, that's it 👐
 
-If you want to run a custom command that is not in previous list, you can use `make run CMD='<your command>'` (e.g. `make run CMD='elixir --version'` will run `elixir --version` in the Docker environment).
+## 🏃 Develop
 
-## Contribute
+If you want to run a custom command that is not in the following list, you can use `make run CMD='<your command>'`.
+
+For instance: `make run CMD='elixir --version'` will run `elixir --version` in the Docker environment 🚢
+
+### `make start` starts a server
+
+Options:
+
+* `PORT` to use a custom port (e.g. `make start PORT=4010`)
+
+### `make test` runs tests
+
+Options:
+
+* `PORT` to use a custom port (e.g. `make test PORT=4011`)
+
+### `make test_watch` runs tests in watch mode
+
+Options:
+
+* `PORT` to use a custom port (e.g. `make test_watch PORT=4011`)
+
+### `make format` formats your code
+
+💁 _At some point, this would be a pre-commit hook so you won't have to bother._
+
+### `make docs` generates documentation of the application
+
+### `make lint` lints your code
+
+It may take some time the first time you run it because it generates the [Persistent Lookup Table (PLT)](https://hexdocs.pm/dialyxir/readme.html#with-explaining-stuff) to cache the output of the analysis.
+
+## 💁 About
 
 This project uses following technologies:
 

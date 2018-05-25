@@ -28,3 +28,6 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
+
+# Import non-versioned config file with secrets.
+import_config "config.secret.exs"

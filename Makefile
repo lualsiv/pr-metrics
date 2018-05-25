@@ -29,6 +29,8 @@ DOCKER_RUN_CMD = docker run \
 	${DOCKER_MOUNT_LOCAL_FILES} \
 	-w ${DOCKER_WORKING_DIR} \
 
+bootstrap: build install generate_secret
+
 build:
 	docker build -t ${DOCKER_IMAGE} .
 
@@ -36,6 +38,12 @@ install:
 	${DOCKER_RUN_CMD} \
 		${DOCKER_IMAGE} \
 		sh -c ${INSTALL_CMD} \
+
+# Current implementation is basic because config is really small.
+# If you want to add more => refactor with a more maintainable solution first.
+generate_secret:
+	$(eval TOKEN ?= SHOULD BE FILLED)
+	echo 'use Mix.Config\n\nconfig :pr_metrics,\n  github_access_token: "${TOKEN}"' > ./config/config.secret.exs
 
 start:
 	$(eval PORT ?= ${DEFAULT_PORT})
