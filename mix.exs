@@ -25,10 +25,13 @@ defmodule PrMetrics.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:tentacat, "~> 1.0"},
+
+      # Development only
       {:ex_doc, "~> 0.16", only: :dev, runtime: false},
       {:dialyxir, "~> 0.5", only: :dev, runtime: false},
       {:mix_test_watch, "~> 0.5", only: :dev, runtime: false},
-      {:tentacat, "~> 1.0"}
+      {:remix, "~> 0.0.1", only: :dev}
     ]
   end
 end

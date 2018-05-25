@@ -28,6 +28,28 @@ Options:
 
 * `PORT` to use a custom port (e.g. `make start PORT=4010`)
 
+We use [remix](https://github.com/AgilionApps/remix) in dev to provide auto-reload functionality when you change the source code.
+However, it's an old library that has not been updated for a long time. It may have some issues.
+
+A known issue: when it recompiles, it won't tell you it's done. So you'll have something like:
+
+```sh
+iex(4)> warning: mtime (modified time) for "lib/pr_metrics.ex" was set to the future, resetting tonow
+Compiling 1 file (.ex)
+```
+
+And you may wait for a success message. But it won't come.
+
+Solution: actually, it has recompiled! Hit `Enter` (or any key) to see it:
+
+```sh
+iex(4)> warning: mtime (modified time) for "lib/pr_metrics.ex" was set to the future, resetting tonow
+Compiling 1 file (.ex)
+
+nil
+iex(5)>
+```
+
 ### `make test` runs tests
 
 Options:
