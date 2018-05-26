@@ -1,6 +1,6 @@
 # PR Metrics
 
-This project aims to get metrics from Busbud Pull-Requests (e.g. evolution of PR open-time).
+This project aims to get metrics from Busbud Pull-Requests (e.g. evolution of PRs open-time).
 
 ## 👣 Get started
 

@@ -1,6 +1,8 @@
 defmodule Infra.PrsReader.GitHub do
   @moduledoc """
   GitHub implementation of `Domain.IReadPrs`.
+
+  It uses [GitHub API](https://developer.github.com/v3/pulls/#list-pull-requests) to request PRs information.
   """
   @behaviour Domain.IReadPrs
 

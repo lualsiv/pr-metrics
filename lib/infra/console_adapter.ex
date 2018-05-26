@@ -5,7 +5,7 @@ defmodule Infra.ConsoleAdapter do
   require Logger
 
   @doc """
-    Log PRs open time in the console.
+  Log PRs open-time in the console.
   """
   @spec log_open_time(calculate_open_time :: (() -> non_neg_integer)) ::
           :ok | {:error, String.t()}

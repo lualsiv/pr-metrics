@@ -1,6 +1,6 @@
 defmodule Domain.OpenTime do
   @moduledoc """
-  Calculate Pull Requests (PRs) open-time.
+  Calculate PRs open-time.
   """
 
   @type pr :: %{created_at: String.t()}
