@@ -5,12 +5,15 @@ defmodule Domain.OpenTime do
 
   @type pr :: %{created_at: String.t()}
 
+  @dates_giver Application.get_env(:pr_metrics, :dates_giver)
+  @prs_reader Application.get_env(:pr_metrics, :prs_reader)
+
   @doc """
   Returns the average number of days PRs have been opened until today.
   """
-  @spec calculate(get_today :: (() -> String.t()), get_prs :: (() -> [pr])) :: non_neg_integer
-  def calculate(get_today, get_prs) do
-    prs_open_times_until(get_today.(), get_prs.())
+  @spec calculate() :: non_neg_integer
+  def calculate() do
+    prs_open_times_until(@dates_giver.today(), @prs_reader.opened_prs())
     |> average
   end
 

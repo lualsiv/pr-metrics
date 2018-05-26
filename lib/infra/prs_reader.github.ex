@@ -1,15 +1,12 @@
-defmodule Infra.GetPrs.GitHub do
+defmodule Infra.PrsReader.GitHub do
   @moduledoc """
-  GitHub implementation of `get_prs`.
+  GitHub implementation of `Domain.IReadPrs`.
   """
+  @behaviour Domain.IReadPrs
 
   @access_token Application.get_env(:pr_metrics, :github_access_token)
 
-  @doc """
-  Get PRs from GitHub.
-  """
-  @spec get_prs() :: [Domain.OpenTime.pr()]
-  def get_prs do
+  def opened_prs do
     # TODO: handle other scenarios
     {200, gh_prs, _} =
       Tentacat.Client.new(%{access_token: @access_token})

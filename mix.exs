@@ -31,7 +31,10 @@ defmodule PrMetrics.MixProject do
       {:ex_doc, "~> 0.16", only: :dev, runtime: false},
       {:dialyxir, "~> 0.5", only: :dev, runtime: false},
       {:mix_test_watch, "~> 0.5", only: :dev, runtime: false},
-      {:remix, "~> 0.0.1", only: :dev}
+      {:remix, "~> 0.0.1", only: :dev},
+
+      # Test only
+      {:mox, "~> 0.3", only: :test}
     ]
   end
 end
