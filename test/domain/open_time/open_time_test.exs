@@ -9,9 +9,9 @@ defmodule Domain.OpenTimeTest do
   @invalid_date "2011-32-00"
 
   test "returns average number of days PRs have been opened until given date" do
-    today = fn -> @today end
+    get_today = fn -> @today end
 
-    prs = fn ->
+    get_prs = fn ->
       [
         %{created_at: @two_days_before},
         %{created_at: @three_days_before},
@@ -19,15 +19,15 @@ defmodule Domain.OpenTimeTest do
       ]
     end
 
-    avg_open_time = Domain.OpenTime.calculate(today, prs)
+    avg_open_time = Domain.OpenTime.calculate(get_today, get_prs)
 
     assert avg_open_time == 3
   end
 
   test "omits PRs with an invalid date when calculating open time" do
-    today = fn -> @today end
+    get_today = fn -> @today end
 
-    prs = fn ->
+    get_prs = fn ->
       [
         %{created_at: @two_days_before},
         %{created_at: @three_days_before},
@@ -36,15 +36,15 @@ defmodule Domain.OpenTimeTest do
       ]
     end
 
-    avg_open_time = Domain.OpenTime.calculate(today, prs)
+    avg_open_time = Domain.OpenTime.calculate(get_today, get_prs)
 
     assert avg_open_time == 3
   end
 
   test "rounds the average open time" do
-    today = fn -> @today end
+    get_today = fn -> @today end
 
-    prs = fn ->
+    get_prs = fn ->
       [
         %{created_at: @two_days_before},
         %{created_at: @two_days_before},
@@ -52,16 +52,16 @@ defmodule Domain.OpenTimeTest do
       ]
     end
 
-    avg_open_time = Domain.OpenTime.calculate(today, prs)
+    avg_open_time = Domain.OpenTime.calculate(get_today, get_prs)
 
     assert avg_open_time == 2
   end
 
   test "returns 0 if there are no PR" do
-    today = fn -> @today end
-    empty_prs = fn -> [] end
+    get_today = fn -> @today end
+    get_empty_prs = fn -> [] end
 
-    avg_open_time = Domain.OpenTime.calculate(today, empty_prs)
+    avg_open_time = Domain.OpenTime.calculate(get_today, get_empty_prs)
 
     assert avg_open_time == 0
   end

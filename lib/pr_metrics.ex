@@ -11,20 +11,20 @@ defmodule PrMetrics do
   """
   def main do
     # Instantiate the "I need to go out" adapters
-    today = fn -> Date.utc_today() |> Date.to_iso8601() end
+    get_today = fn -> Date.utc_today() |> Date.to_iso8601() end
 
-    # TODO: handle other scenarios
-    {200, gh_prs, _} =
-      Tentacat.Client.new(%{access_token: @access_token})
-      |> Tentacat.Pulls.list("busbud", "integrations")
+    get_prs = fn ->
+      # TODO: handle other scenarios
+      {200, gh_prs, _} =
+        Tentacat.Client.new(%{access_token: @access_token})
+        |> Tentacat.Pulls.list("busbud", "integrations")
 
-    prs = fn ->
       gh_prs
       |> Enum.map(fn gh_pr -> %{created_at: String.slice(gh_pr["created_at"], 0..9)} end)
     end
 
     # Instantiate the hexagon
-    avg_open_time = Domain.OpenTime.calculate(today, prs)
+    avg_open_time = Domain.OpenTime.calculate(get_today, get_prs)
 
     # Instantiate the "I need to enter" adapters
 

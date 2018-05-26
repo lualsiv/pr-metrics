@@ -8,9 +8,9 @@ defmodule Domain.OpenTime do
   @doc """
   Returns the average number of days PRs have been opened until today.
   """
-  @spec calculate(today :: (() -> String.t()), prs :: (() -> [pr])) :: non_neg_integer
-  def calculate(today, prs) do
-    prs_open_times_until(today.(), prs.())
+  @spec calculate(get_today :: (() -> String.t()), get_prs :: (() -> [pr])) :: non_neg_integer
+  def calculate(get_today, get_prs) do
+    prs_open_times_until(get_today.(), get_prs.())
     |> average
   end
 
