@@ -2,33 +2,29 @@ defmodule PrMetrics do
   @moduledoc """
   PR Metrics application.
   """
-  require Logger
-
-  @access_token Application.get_env(:pr_metrics, :github_access_token)
 
   @doc """
   Log the average PRs open-time.
   """
   def main do
+    # Yet, there is just one method per module.
+    # That's OK because we only use one. Doing so is explicit.
+    # But we'll move to Elixir Behaviours when we add more methods.
+
     # Instantiate the "I need to go out" adapters
-    get_today = fn -> Date.utc_today() |> Date.to_iso8601() end
-
-    get_prs = fn ->
-      # TODO: handle other scenarios
-      {200, gh_prs, _} =
-        Tentacat.Client.new(%{access_token: @access_token})
-        |> Tentacat.Pulls.list("busbud", "integrations")
-
-      gh_prs
-      |> Enum.map(fn gh_pr -> %{created_at: String.slice(gh_pr["created_at"], 0..9)} end)
-    end
+    get_today = &Infra.GetToday.Date.get_today/0
+    get_prs = &Infra.GetPrs.GitHub.get_prs/0
 
     # Instantiate the hexagon
     avg_open_time = Domain.OpenTime.calculate(get_today, get_prs)
 
+    # In fact, we should be "injecting" the domain into the next adapters.
+    # Using Behaviours too? Still need to figure this out…
+
     # Instantiate the "I need to enter" adapters
+    log_open_time = &Infra.ConsoleAdapter.log_open_time/1
 
     # App logic, using left-side adapters
-    Logger.info("Average open-time (for currently opened PRs) is: " <> to_string(avg_open_time))
+    log_open_time.(avg_open_time)
   end
 end
