@@ -1,6 +1,7 @@
 #!/usr/bin/make -f
 
 DEFAULT_PORT = 4000
+DEFAULT_TEST_PORT = 4001
 
 DOCKER_IMAGE = pr-metrics
 DOCKER_WORKING_DIR = /app
@@ -59,7 +60,7 @@ start:
 
 .PHONY: test
 test:
-	$(eval PORT ?= ${DEFAULT_PORT})
+	$(eval PORT ?= ${DEFAULT_TEST_PORT})
 	${DOCKER_RUN_CMD} \
 		-p ${PORT}:${DEFAULT_PORT} \
 		${DOCKER_IMAGE} \
@@ -67,7 +68,7 @@ test:
 
 .PHONY: test_watch
 test_watch:
-	$(eval PORT ?= ${DEFAULT_PORT})
+	$(eval PORT ?= ${DEFAULT_TEST_PORT})
 	${DOCKER_RUN_CMD} \
 		-p ${PORT}:${DEFAULT_PORT} \
 		${DOCKER_IMAGE} \
