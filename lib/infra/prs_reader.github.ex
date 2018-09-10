@@ -12,7 +12,7 @@ defmodule Infra.PrsReader.GitHub do
     # TODO: handle other scenarios
     {200, gh_prs, _} =
       Tentacat.Client.new(%{access_token: @access_token})
-      |> Tentacat.Pulls.list("busbud", "integrations")
+      |> Tentacat.Pulls.list("nicoespeon", "gitgraph.js")
 
     gh_prs
     |> Enum.map(fn gh_pr -> %{created_at: String.slice(gh_pr["created_at"], 0..9)} end)

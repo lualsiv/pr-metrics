@@ -1,14 +1,12 @@
 # PR Metrics
 
-This project aims to get metrics from Busbud Pull-Requests (e.g. evolution of PRs open-time).
+This project aims to get metrics from Pull-Requests (e.g. evolution of PRs open-time).
 
 ## 👣 Get started
 
 First, you need to install [Docker](https://docs.docker.com/install/) if you don't have it.
 
 Then, [create a GitHub AccessToken](https://blog.github.com/2013-05-16-personal-api-tokens/) with the **repo** scope.
-
-> It needs to access your private repos to find Busbud ones.
 
 Once you've got your token, run `make bootstrap TOKEN=<YOUR TOKEN>`.
 

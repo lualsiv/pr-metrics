@@ -11,7 +11,7 @@ defmodule PrMetrics.MixProject do
 
       # Docs
       name: "PR Metrics",
-      source_url: "https://github.com/busbud/pr_metrics"
+      source_url: "https://github.com/nicoespeon/pr_metrics"
     ]
   end
 
